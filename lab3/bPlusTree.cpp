@@ -150,7 +150,7 @@ void BPlusTree<DataType>::_split_node(std::shared_ptr<BPlusNode<DataType>> node)
     else {
         Node_ptr parent = node->parent;
         new_node->parent = node->parent;
-        unsigned index = 0; //max index of element, smaller than element to insert
+        unsigned index = 0; 
         while (index < parent->size && data_second_part.front() > parent->data[index]) {
             index++;
         }
@@ -177,7 +177,7 @@ template<typename DataType>
 std::pair<std::shared_ptr<BPlusNode<DataType>>, unsigned>
 BPlusTree<DataType>::_subtree_insert(std::shared_ptr<BPlusNode<DataType>> subtree_root, const DataType& key) {
     if (subtree_root->leaf) {
-        unsigned index = 0; //max index of element, smaller than key
+        unsigned index = 0; 
         while (index < subtree_root->size && key > subtree_root->data[index]) {
             index++;
         }
@@ -200,7 +200,7 @@ BPlusTree<DataType>::_subtree_insert(std::shared_ptr<BPlusNode<DataType>> subtre
 
     }
     else {
-        unsigned index = 0; //index of child where key should be insert
+        unsigned index = 0;
         while (index < subtree_root->size && key >= subtree_root->data[index]) {
             index++;
         }
@@ -247,7 +247,7 @@ void BPlusTree<DataType>::_remove_from_node(BPlusTree::Node_ptr node, unsigned i
     auto right_sib = (child_index < parent->size) ? parent->children[child_index + 1] : nullptr;
 
     if (left_sib.get() && left_sib->size - 1 >= _min_node_fill) {
-        //take max element from left_sib;
+
         node->data.insert(node->data.begin(), left_sib->data.back());
         left_sib->data.pop_back();
 
@@ -262,7 +262,7 @@ void BPlusTree<DataType>::_remove_from_node(BPlusTree::Node_ptr node, unsigned i
     }
 
     if (right_sib.get() && right_sib->size - 1 >= _min_node_fill) {
-        //take min element from right_sib;
+
         node->data.push_back(right_sib->data[0]);
         right_sib->data.erase(right_sib->data.begin());
 
@@ -277,7 +277,7 @@ void BPlusTree<DataType>::_remove_from_node(BPlusTree::Node_ptr node, unsigned i
     }
 
     if (left_sib.get()) {
-        //merge node with left_sib; recursively delete corresponding constraint element from parent;
+
         unsigned new_size = node->size + left_sib->size;
 
         std::vector<DataType> new_data;
@@ -309,7 +309,7 @@ void BPlusTree<DataType>::_remove_from_node(BPlusTree::Node_ptr node, unsigned i
     }
 
     if (right_sib.get()) {
-        //merge node with right_sib; recursively delete corresponding constraint element from parent;
+      
         unsigned new_size = node->size + right_sib->size;
 
         std::vector<DataType> new_data;
