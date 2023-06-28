@@ -3,14 +3,14 @@
 using namespace std;
 const int INFINIT = 8000;
 
-void relax(distanceVector& dist, GraphFunctionality& graph, size_t u, size_t v) {//робить релаксацію ребра тобто виключення з циклу
+void relax(distanceVector& dist, GraphFunctionality& graph, size_t u, size_t v) {
     if (dist[v] > dist[u] + graph.edgeWeight(u, v)) {
         dist[v] = dist[u] + graph.edgeWeight(u, v);
         cout << u << "->" << v << "   ";
     }
 }
 
-void relax(distanceVector& dist, edgesContainer& edgesWeight, size_t u, size_t v) {//робить релаксацію ребра тобто виключення з циклу
+void relax(distanceVector& dist, edgesContainer& edgesWeight, size_t u, size_t v) {
     auto edge = find_if(edgesWeight.begin(), edgesWeight.end(),
         [u, v](Edge& e)->bool {
             return e.getFromVertex() == u &&
@@ -22,7 +22,7 @@ void relax(distanceVector& dist, edgesContainer& edgesWeight, size_t u, size_t v
     }
 }
 
-distanceVector belmanFord(GraphFunctionality& graph, size_t fromVertex) throw(runtime_error) {//функція виконує алгоритм Белмана-Форда
+distanceVector belmanFord(GraphFunctionality& graph, size_t fromVertex) throw(runtime_error) {
     auto edges = graph.getEdges();
     //min distance between vertex and vertices[i]
     distanceVector distance(graph.verticesSize());
@@ -39,7 +39,7 @@ distanceVector belmanFord(GraphFunctionality& graph, size_t fromVertex) throw(ru
     return  distance;
 }
 
-vector<distanceVector> johnsonAlgorithm(GraphFunctionality& g) {//функція виконує алгоритм Джонсона 
+vector<distanceVector> johnsonAlgorithm(GraphFunctionality& g) {
     vector<distanceVector> res;
     g.addSpecialVertex();
     auto r = belmanFord(g, g.verticesSize() - 1);
@@ -73,7 +73,7 @@ vector<distanceVector> johnsonAlgorithm(GraphFunctionality& g) {//функція викону
     return res;
 }
 
-distanceVector dijkstra(GraphFunctionality& graph, edgesContainer newEdgesWeight, size_t fromVertex) {//функція викнує алгоритм Дейкстри
+distanceVector dijkstra(GraphFunctionality& graph, edgesContainer newEdgesWeight, size_t fromVertex) {
     distanceVector distance(graph.verticesSize());
     initDistanceVector(distance, fromVertex);
 
@@ -96,7 +96,7 @@ distanceVector dijkstra(GraphFunctionality& graph, edgesContainer newEdgesWeight
     return distance;
 }
 
-pair<size_t, int> findMin(vector<bool>& in, edgesContainer& edgesWeight) {//функція пошуку мінімального ребра
+pair<size_t, int> findMin(vector<bool>& in, edgesContainer& edgesWeight) {
     int minDist = INFINITY;
     size_t minDistVertex = INFINITY;
     for (auto& i : edgesWeight) {
@@ -110,7 +110,7 @@ pair<size_t, int> findMin(vector<bool>& in, edgesContainer& edgesWeight) {//функ
     return make_pair(minDistVertex, minDist);
 }
 
-void initDistanceVector(distanceVector& distance, size_t fromVertex) {//допоміжна функція  знаходить довжину маршруту 
+void initDistanceVector(distanceVector& distance, size_t fromVertex) {
     for (int i = 0; i < distance.size(); i++) {
         distance[i] = fromVertex == i ? 0 : INFINIT;
     }
