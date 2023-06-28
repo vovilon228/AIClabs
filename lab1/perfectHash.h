@@ -10,7 +10,7 @@ struct UniversalHash {
             [a, b, p](int sum, char ch) { return (a * (sum + ch) + b) % p; }
         ) % m;
     }
-}; // struct UniversalHash<std::string>
+}; 
 
 class HashRow {
 public:
