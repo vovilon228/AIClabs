@@ -10,7 +10,7 @@ std::ostream& operator<<(std::ostream& os, Group* group) {
     return os;
 }
 
-void example_Group() {//функція для тестування алгоритмів роботи з B+ -деревом
+void example_Group() {
     vector<Group> students;
     cout << "Enter num car in B+ tree\n  n =";
     int n;
