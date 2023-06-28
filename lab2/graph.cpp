@@ -5,7 +5,6 @@
 
 using namespace std;
 
-//************************* методи классу Vertex*************************//
 
 Vertex::Vertex(Group& d) :data(d) {
 }
@@ -13,8 +12,6 @@ Vertex::Vertex(Group& d) :data(d) {
 Group& Vertex::getData() {
     return  data;
 }
-
-//************************* мктоли классуEdge*************************//
 
 Edge::Edge(size_t f, size_t t, int dist) :
     from(f), to(t), distance(dist) {
@@ -36,7 +33,7 @@ void Edge::setDistance(int dist) {
     distance = dist;
 }
 
-//************************* методи классу AdjecentListBasedGraph *************************
+
 
 AdjecentListBasedGraph::AdjecentListBasedGraph(std::string file, std::vector<Group>& dataVector) {
     for (int i = 0; i < dataVector.size(); i++) {
@@ -107,7 +104,6 @@ void AdjecentListBasedGraph::addSpecialVertex() {
     }
 }
 
-//************************* методи классу Graph*************************//
 
 Graph::Graph(std::string file, vector<Group>& dataVector) :graphData(file, dataVector) {
 }
