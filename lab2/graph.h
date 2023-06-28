@@ -6,15 +6,15 @@
 
 
 
-class Vertex;//класс для  опису вершини графу
-class Edge;//класс для опису ребра 
-class Graph;//класс для опису графа
+class Vertex;
+class Edge;
+class Graph;
 
 
 using verticesContainer = std::vector<Vertex>;
 using edgesContainer = std::vector<Edge>;
 
-class Vertex {//класс для опису ребра 
+class Vertex {
 private:
     Group data;
 public:
@@ -25,7 +25,7 @@ public:
     }
 };
 
-class Edge {//класс для опису ребра
+class Edge {
 private:
     size_t from;
     size_t to;
@@ -49,7 +49,7 @@ public:
     virtual void addSpecialVertex() = 0;
 };
 
-class AdjecentListBasedGraph {//класс для опису списку мінімальних маршрутів
+class AdjecentListBasedGraph {
 private:
     verticesContainer vertices;
     edgesContainer edges;
@@ -66,7 +66,7 @@ public:
     void addSpecialVertex();
 };
 
-class Graph : public GraphFunctionality {//класс для опису графа
+class Graph : public GraphFunctionality {
 private:
     AdjecentListBasedGraph graphData;
 public:
