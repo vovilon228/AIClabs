@@ -1,6 +1,6 @@
 #include <memory>
 #include <vector>
-//клас для опису вузла В+ -дерева ,зберігає список ключів і список дітей
+
 template<typename DataType>
 class BPlusNode {
     typedef std::shared_ptr<BPlusNode> Node_ptr;
@@ -12,11 +12,11 @@ public:
     Node_ptr next_leaf;
     Node_ptr prev_leaf;
     Node_ptr parent;
-    //конструктор
+
     BPlusNode();
 };
 
-//клас для опису самого В+ -дерева
+
 template<typename DataType>
 class BPlusTree {
     typedef std::shared_ptr<BPlusNode<DataType>> Node_ptr;
@@ -27,28 +27,28 @@ private:
     Node_ptr _root;
 
     template<typename OStream>
-    void _printStep(OStream& output, std::shared_ptr<BPlusNode<DataType>> node, int level);//функція виводить деерево на консоль
+    void _printStep(OStream& output, std::shared_ptr<BPlusNode<DataType>> node, int level);
 
-    std::pair<Node_ptr,unsigned> _subtree_search(std::shared_ptr<BPlusNode<DataType>> subtree_root, const DataType& key);//пошук ключа у піддерві
+    std::pair<Node_ptr,unsigned> _subtree_search(std::shared_ptr<BPlusNode<DataType>> subtree_root, const DataType& key);
 
-    void _split_node(std::shared_ptr<BPlusNode<DataType>> node);//функція розєднує деерво на два піддерева
+    void _split_node(std::shared_ptr<BPlusNode<DataType>> node);
 
-    std::pair<Node_ptr,unsigned> _subtree_insert(std::shared_ptr<BPlusNode<DataType>> subtree_root, const DataType& key);//вставка ключа у піддерево
+    std::pair<Node_ptr,unsigned> _subtree_insert(std::shared_ptr<BPlusNode<DataType>> subtree_root, const DataType& key);
 
-    void _remove_from_node(Node_ptr node, unsigned index);//видалення ключа з піддерева
+    void _remove_from_node(Node_ptr node, unsigned index);
 
 public:
-    explicit BPlusTree(unsigned minimum_degree = 2);//конструктор
+    explicit BPlusTree(unsigned minimum_degree = 2);
 
     template<typename OStream>
-    void print(OStream& output);//функція виводить дерево на екран
+    void print(OStream& output);
 
     template<typename OStream>
-    void printSorted(OStream& output);//функція виводить списки ключів у порядку зростання
+    void printSorted(OStream& output);
 
-    bool includes(const DataType& key);//функція перевіряє на входження ключа в деерво
+    bool includes(const DataType& key);
 
-    void insert(const DataType& key);//функція вставки 
+    void insert(const DataType& key);
 
-    void remove(const DataType& key);//функція видалення 
+    void remove(const DataType& key);
 };
